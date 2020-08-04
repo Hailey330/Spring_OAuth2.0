@@ -37,9 +37,8 @@ spring:
             - email
             - profile
           facebook:
-            client-id: 100702056138-togod64a0639p3glr6ja6c8b6kpkkdo1.apps.googleusercontent.com
-            client-secret: IAVwxi8tuYMNiUGWPoWkgF5n
+            client-id: 727434888021969
+            client-secret: 5887d1cc91d32b4a451f4a40d1b4be90
             scope:
             - email
-            - profile
           

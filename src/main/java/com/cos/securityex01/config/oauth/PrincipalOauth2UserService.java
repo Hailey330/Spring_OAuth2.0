@@ -54,7 +54,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("facebook")) {
 			oAuth2UserInfo = new FacebookUserInfo(oAuth2User.getAttributes());			
 		} else {
-			System.out.println("여기는 Google, Facebook만 지원합니다.");
+			System.out.println("Google, Facebook만 지원합니다.");
 		}
 		
 		System.out.println("oAuth2UserInfo.getProvider() : " + oAuth2UserInfo.getProvider());
