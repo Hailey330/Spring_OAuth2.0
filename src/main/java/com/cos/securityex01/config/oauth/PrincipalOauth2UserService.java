@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.cos.securityex01.config.auth.PrincipalDetails;
 import com.cos.securityex01.config.oauth.provider.FacebookUserInfo;
 import com.cos.securityex01.config.oauth.provider.GoogleUserInfo;
+import com.cos.securityex01.config.oauth.provider.KakaoUserInfo;
+import com.cos.securityex01.config.oauth.provider.NaverUserInfo;
 import com.cos.securityex01.config.oauth.provider.OAuth2UserInfo;
 import com.cos.securityex01.model.User;
 import com.cos.securityex01.repository.UserRepository;
@@ -31,8 +33,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		// 1. PrincipalDetails 에 OAuth2User 정보를 넣어준다.
 		// 2. PrincipalDetails 를 리턴한다.
 		// 기존의 로그인 + OAuth 로그인 => 세션 하나로 관리할 수 있음!
-		System.out.println("userRequest clientRegistration: " + userRequest.getClientRegistration()); // code를 통해 응답 받은
-																										// 회원정보
+		System.out.println("userRequest clientRegistration: " + userRequest.getClientRegistration()); // code를 통해 응답 받은 회원정보
 		System.out.println("oAuth2User : " + oAuth2User); // Token을 통해 응답 받은 회원정보
 		System.out.println("userRequest tokenValue: " + userRequest.getAccessToken().getTokenValue());
 
@@ -53,12 +54,18 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 			oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("facebook")) {
 			oAuth2UserInfo = new FacebookUserInfo(oAuth2User.getAttributes());			
+		} else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
+			oAuth2UserInfo = new NaverUserInfo(oAuth2User.getAttributes());			
+		} else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
+			oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());			
 		} else {
-			System.out.println("Google, Facebook만 지원합니다.");
+			System.out.println("Google, Facebook, Naver, Kakao만 지원합니다.");
 		}
 		
 		System.out.println("oAuth2UserInfo.getProvider() : " + oAuth2UserInfo.getProvider());
 		System.out.println("oAuth2UserInfo.getProviderId() : " + oAuth2UserInfo.getProviderId());
+		System.out.println("oAuth2UserInfo.getName() : " + oAuth2UserInfo.getName());
+		System.out.println("oAuth2UserInfo.getEmail() : " + oAuth2UserInfo.getEmail());
 		
 		Optional<User> userOptional = userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
 		
