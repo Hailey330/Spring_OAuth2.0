@@ -41,6 +41,15 @@ spring:
             client-secret: 5887d1cc91d32b4a451f4a40d1b4be90
             scope:
             - email
+          twitter:
+            client-id: BnZGtccgYU15Dt8bsoavBfl1P
+            client-secret: BWuUkjiVgjTC6N0KS2NXv1ShDDAaI5RWrXzgDZV2l9LDQLJTpR
+            redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+            client-authentication-method: POST
+            scope:
+            - email
+            client-name: Twitter
           naver: 
             client-id: TIiiU2d0fxumEk0DdQ2f
             client-secret: oSGAUMYp2W
@@ -72,12 +81,8 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
-            
-            
-        
-        
-
-          
-    
-    
-
+          twitter:
+            authorization-uri: https://api.twitter.com/oauth/authorize
+            token-uri: https://api.twitter.com/oauth2/token
+            user-info-uri: https://api.twitter.com/1.1/users/show.json
+            user-name-attribute: state

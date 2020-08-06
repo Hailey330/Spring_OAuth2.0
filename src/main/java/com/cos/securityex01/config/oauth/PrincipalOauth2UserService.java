@@ -38,15 +38,15 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		System.out.println("userRequest tokenValue: " + userRequest.getAccessToken().getTokenValue());
 
 		return processOAuth2User(userRequest, oAuth2User); // 세션에 등록되는 것
-		// userRequest : 회원정보 요청하기 전에 회원의 모든 정보
-		// oAuth2User : 회원정보 요청 후 정보
+		// userRequest : 회원정보 요청하기 전에 회원의 모든 정보 (code 응답)
+		// oAuth2User : 회원정보 요청 후 정보 (Token 응답)
 	}
 
 	private OAuth2User processOAuth2User(OAuth2UserRequest userRequest, OAuth2User oAuth2User) {
 		// 일반적으로 로그인할 때 유저 정보는 User Object가 들고 있음
 		// OAuth2로 로그인할 때 유저 정보는 attributes ← 구성할 것!
 		// DB에 해당하는 유저가 있는지 확인함
-		// 있으면? → 유저 정보 updatec
+		// 있으면? → 유저 정보 update
 		
 		// Attribute를 파싱해서 공통 객체로 묶음 → 관리가 편함
 		OAuth2UserInfo oAuth2UserInfo = null;
